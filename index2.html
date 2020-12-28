@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/pizza.css">
+    <title>Pizzas</title>
+    <script src="https://kit.fontawesome.com/15744a1736.js" crossorigin="anonymous"></script>
+</head>
+<style>
+    .Ini-contenedor input, .Ini-contenedor textarea{
+        color: #ffffff
+    }
+    .Ini-contenedor i{
+        color: #ffffff;
+    }
+    .caja-usuario .btn:hover{
+        color: #ffffff;
+    }
+</style>
+<body>
+    <header>
+        <div class="color">
+            <div class="contenedor">
+                <div class="nav">
+                    <div class="logo">
+                        <a href=""><h1>Pacomer <img class="icono" src="img/ds-crea.png" alt="A">lgo</h1></a>
+                    </div>
+                    <div class="menu">
+                        <a href="./xd.htm">Pizzas <img class="icono" src="img/ds-icpizzas.png" alt="P"> <span>/</span></a> 
+                        <a href="./index.html">Promociones <img class="icono" src="img/ds-icpromos.png" alt="Pr"> <span>/</span></a>
+                        <a href="">Adicionales  <img class="icono" src="img/ds-adicionales.png" alt="A"> <span>/</span></a>
+                        <a onclick="popup1()"><img class="icono" src="img/icon-cart.png" alt="Cart"></a><span id="contador"></span>
+                    </div>
+                    <div class="respponsive" onclick="mega_menu()">
+                        <i class="fas fa-bars"></i>
+                    </div>
+                    <div class="mega_menu">
+                        <div class="m_mn"><a href=""><h2>Pizzas</h2><img src="img/ds-icpizzas.png" alt=""></a></div>
+                        <div class="m_mn"><a href=""><h2>Promociones</h2><img src="img/ds-icpromos.png" alt=""></a></div>
+                        <div class="m_mn"><a href=""><h2>Adicionales</h2><img src="img/ds-adicionales.png" alt=""></a></div>
+                        <div class="m_mn"><a onclick="popup1(); quitar()"><h2>Carrito</h2><img src="img/icon-cart.png" alt=""></a></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="popup" id="popup-2">
+            <div class="overlay" onclick="popup1()"></div>
+            <div class="contenido">
+                <div class="cerrar" onclick="popup1()"><i class="fas fa-times"></i></div>
+                <h2>Carrito <i class="fas fa-cart-arrow-down"></i></h2>
+                <hr>
+                <div class="tot">
+                    <h3>Total a pagar</h3>
+                    <div><i class="fas fa-dollar-sign"></i><h4 id="total">0</h4></div>
+                </div>
+                <hr>
+                <div class="botones">
+                    <a href="" class="btn restar" onclick="eliminar(); popup1();">Vaciar Carrito <i class="fas fa-trash"></i></a>
+                    <button class="btn suma" onclick="popup1(); popup();">Ir al ticket <i class="fas fa-file-invoice-dollar"></i></button>
+                </div>
+            </div>
+        </div>
+        <div class="slider" onclick="quitar()">
+            <ul>
+                <li><img src="img/Cero contacto.jpg" alt=""></li>
+                <li><img src="img/Sileder.jpg" alt=""></li>
+                <li><img src="img/Ad.jpg" alt=""></li>
+                <li><img src="img/Sileder-ad.png" alt=""></li>
+            </ul>
+        </div>
+    </header>
+    <main class="contenedor" onclick="quitar()">
+        <!--la ventana extra es para colocar el tiket, obviamente lo traeras desde la base de datos metida en un array, ademas con el fin con
+        el que hice esta ventana, es para ser reutilizada-->
+        <div class="popup" id="popup-1">
+            <div class="overlay" onclick="popup()"></div>
+            <div class="contenido fondo" id="g-t">
+                <div class="cerrar" onclick="popup()"><i class="fas fa-times"></i></div>
+                <form class="tiket">
+                    <h2>TICKET</h2> 
+                    <h3>Operadora OMX. S.A de C.V</h3><br>
+                    <label for="">Prolongacion Reforma #1235 Santa Fe Cuajimalpa Cuajimalpa de Morelo pOM-9604298 Cancún.</label><br>
+                    <label for="" class="color">Estimado <!--label>Nombre de usuarios</label--> de la manera mas atenta le recordamos que tenga abiera 
+                        la pagina en donde se muestre su ticket</label><br><br>
+                    <b><label class="left">Productos:</label></b><br><br>
+                    <label class="left" id="h">0</label><label class="left" for="">HAWAIANA</label><label class="right" id="h-t">0</label><br>
+                    <label class="left" id="m">0</label><label class="left" for="">MEXICANA</label><label class="right" id="m-t">0</label><br>
+                    <label class="left" id="ho">0</label><label class="left" for="">HONOLULU</label><label class="right" id="ho-t">0</label><br>
+                    <label class="left" id="qqqq">0</label><label class="left" for="">4 QUESOS</label><label class="right" id="q-t">0</label><br>
+                    <label class="left" id="v">0</label><label class="left" for="">VEGGIE</label><label class="right" id="v-t">0</label><br>
+                    <label class="left" id="pep">0</label><label class="left" for="">PEPERONI</label><label class="right" id="p-t">0</label><br>
+                    <b><label class="left color">Total</label><label id="tic" class="right color"><i class="fas fa-dollar-sign"></i>0</label></b><br><br>
+                    <div class="botones">
+                        <input type="button" class="btn restar" onclick="popup();" value="Seguir comprando"></input>
+                        <input type="button" id="guardar" class="btn suma" value="Guardar ticket"></input>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="eleccion">
+            <h2 class="c-r-t">ELIJE TU PIZZA</h2>
+            <!--este sera que se muestre prederminado, cuando inicie se le agregara la clase-->
+            <!--button class="btn" id="" onclick="">Iniciar sesión</button-->
+            <!--Esta sera oculta ientras no se registre, ya cuando se registre se mostrara con su nombre, y la opccion de salir de secion-->
+            <div class="select">
+                <label class="t">Perfil</label>
+                <button class="btn c-r-t t">Cerrar secion</button>
+            </div>
+        </div>
+        <div class="pizzas-list">
+            <div class="pizza-articulo">
+                <div class="pizzas-tit"><h2 class="c-r-t">HAWAIANA</h2></div>
+                <div class="carta">
+                    <div class="lado frente"><img src="img/HAW.png" alt=""></div>
+                    <div class="lado atras">
+                        <h2>xD</h2>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Possimus dolore tenetur deserunt sit 
+                        quibusdam ad exercitationem amet cumque fugit totam, culpa, facilis ipsa aliquid voluptatibus doloremque.
+                        Ut ducimus sed iste.</p>
+                    </div>
+                </div>
+                <div class="pizza-buttom">
+                    <button class="btn suma" onclick="ola(); haw();">ORDENA AQUÍ <i class="fas fa-cart-plus"></i></button>
+                </div>
+            </div>
+            <div class="pizza-articulo">
+                <div class="pizzas-tit"><h2 class="c-r-t">MEXICANA</h2></div>
+                <div class="carta">
+                    <div class="lado frente"><img src="img/MEX.png" alt=""></div>
+                    <div class="lado atras">
+                        <h2>xD</h2>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Possimus dolore tenetur deserunt sit 
+                        quibusdam ad exercitationem amet cumque fugit totam, culpa, facilis ipsa aliquid voluptatibus doloremque.
+                        Ut ducimus sed iste.</p>
+                    </div>
+                </div>
+                <div class="pizza-buttom">
+                    <button class="btn suma" onclick="ola(); mex();">ORDENA AQUÍ <i class="fas fa-cart-plus"></i></button>
+                </div>
+            </div>
+            <div class="pizza-articulo">
+                <div class="pizzas-tit"><h2 class="c-r-t">HONOLULU</h2></div>
+                <div class="carta">
+                    <div class="lado frente"><img src="img/HONOL.png" alt=""></div>
+                    <div class="lado atras">
+                        <h2>xD</h2>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Possimus dolore tenetur deserunt sit 
+                        quibusdam ad exercitationem amet cumque fugit totam, culpa, facilis ipsa aliquid voluptatibus doloremque.
+                        Ut ducimus sed iste.</p>
+                    </div>
+                </div>
+                <div class="pizza-buttom">
+                    <button class="btn suma" onclick="ola(); how();">ORDENA AQUÍ <i class="fas fa-cart-plus"></i></button>
+                </div>
+            </div>
+            <div class="pizza-articulo">
+                <div class="pizzas-tit"><h2 class="c-r-t">CUATRO QUESOS</h2></div>
+                <div class="carta">
+                    <div class="lado frente"><img src="img/4Q.png" alt=""></div>
+                    <div class="lado atras">
+                        <h2>xD</h2>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Possimus dolore tenetur deserunt sit 
+                        quibusdam ad exercitationem amet cumque fugit totam, culpa, facilis ipsa aliquid voluptatibus doloremque.
+                        Ut ducimus sed iste.</p>
+                    </div>
+                </div>
+                <div class="pizza-buttom">
+                    <button class="btn suma" onclick="ola(); qqqq();">ORDENA AQUÍ <i class="fas fa-cart-plus"></i></button>
+                </div>
+            </div>
+            <div class="pizza-articulo">
+                <div class="pizzas-tit"><h2 class="c-r-t">VEGGIE</h2></div>
+                <div class="carta">
+                    <div class="lado frente"><img src="img/VGP.png" alt=""></div>
+                    <div class="lado atras">
+                        <h2>xD</h2>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Possimus dolore tenetur deserunt sit 
+                        quibusdam ad exercitationem amet cumque fugit totam, culpa, facilis ipsa aliquid voluptatibus doloremque.
+                        Ut ducimus sed iste.</p>
+                    </div>
+                </div>
+                <div class="pizza-buttom">
+                    <button class="btn suma" onclick="ola(); veg();">ORDENA AQUÍ <i class="fas fa-cart-plus"></i></button>
+                </div>
+            </div>
+            <div class="pizza-articulo">
+                <div class="pizzas-tit"><h2 class="c-r-t">PEPERONI</h2></div>
+                <div class="carta">
+                    <div class="lado frente"><img src="img/PEPE.png" alt=""></div>
+                    <div class="lado atras">
+                        <h2>xD</h2>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Possimus dolore tenetur deserunt sit 
+                        quibusdam ad exercitationem amet cumque fugit totam, culpa, facilis ipsa aliquid voluptatibus doloremque.
+                        Ut ducimus sed iste.</p>
+                    </div>
+                </div>
+                <div class="pizza-buttom">
+                    <button class="btn suma" onclick="ola(); pepe();">ORDENA AQUÍ <i class="fas fa-cart-plus"></i></button>
+                </div>
+            </div>
+        </div>
+        <a class="crea" href=""><h2 class="c-r-t">Crea tu propia pizza</h2><span>→</span> <img class="icono" src="Img/ds-crea.png" alt=""></a>
+        <div class="body-comentario ac">
+            <div class="comentario">
+                <h3>TomiCat comento:</h3>
+                <p>Me gustaron las pizzas</p>
+            </div>
+            <img src="./img/Usuario.png" alt="Yo">
+            <span id="c" onclick="cerrar_comentario()"><i class="fas fa-times"></i></span>
+        </div>
+        <div class="body-ticket"><!--Clases generales para que se acomode :D-->
+            <div class="img-ticket"><!--Todo el div de img-ticket se creara desde php con el metodo while;)-->
+                <div id="prueba"></div><!--Aqui sabes perfectament que se pondra la imagen o el url dentro del src :D-->
+                <button type="submit" id="x" onclick="mostrar_corr();" class="btn restar">Borrar ticket <i class="fas fa-trash"></i></button>
+            </div><!--Un pequeño recordatorio que se hara automatico-->
+        </div>
+    </main>
+    <div class="caja-alerta close err oculto">UIS <span class="cerrar" onclick="brusco_dos()"><i class="fas fa-times"></i></span></div><!--Puedes agregar la clase show a caja-alerta paramque veas que si funciona :u-->
+    <div class="caja-alertas corr oculto">No hubo errores <span class="cerrar" onclick="brusco()"><i class="fas fa-times"></i></span></div>
+    <footer>
+        <div class="contenedor">
+            <div class="contenido">
+                <div class="social">
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Omnis, dolor qui. Eligendi impedit facilis eum numquam quibusdam
+                        reiciendis itaque corporis libero recusandae, fuga, veniam quidem et saepe? Possimus, beatae porro!Consectetur natus deleniti
+                        dolorum quisquam non veritatis sed, accusantium dolor, facilis necessitatibus similique dolorem eius nulla? Mollitia, quod
+                        assumenda eum reprehenderit repellat cumque hic saepe eos aperiam illo ipsam ullam.</p><br>
+                </div>
+                <div class="social">
+                    <h2>Visitanos en</h2><br>
+                    <div class="xd">
+                        <div><a href="">En <i class="fab fa-facebook-f"></i> como Pacomer_Algo</a></div>
+                        <div><a href="">En <i class="fab fa-instagram"></i> como @Pacomeralgo.of</a></div>
+                        <div><a href="">En <i class="fab fa-twitter"></i> como #PacomerAlgo</a></div>
+                        <div><a href="">En <i class="far fa-envelope"></i> como pacomer.of@gmail.com</a></div>
+                    </div><br><br><br>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <div class="cokies">
+        <h3>La siguiente pagina contiene cokies para mejorar el manejo de datos</h3>
+        <button id="cokies" class="btn suma">Aceptar</button>
+    </div>
+    <script type="text/javascript" src="js/hi.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/html2canvas@1.0.0-rc.1/dist/html2canvas.min.js"></script>
+</body>
+</html>

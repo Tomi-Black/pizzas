@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/pizza.css">
+    <title>Pizzas</title>
+    <script src="https://kit.fontawesome.com/15744a1736.js" crossorigin="anonymous"></script>
+    <script type="text/javascript">
+        window.addEventListener('load', ()=>{
+            let login = document.getElementById('login'),
+                btn_login = document.getElementById('btn_login'),
+                registro = document.getElementById('registro'),
+                btn_registro = document.getElementById('btn_registro');
+            
+            btn_login.addEventListener('click', ()=>{
+                registro.classList.add('ac');
+                login.classList.add('des');
+            });
+            btn_registro.addEventListener('click', ()=>{
+                registro.classList.remove('ac');
+                login.classList.remove('des');
+            });
+        });
+    </script>
+</head>
+<style>
+    body{
+        background: url(img/pizzero.jpg) no-repeat;
+        background-size: cover;
+    }
+    main{
+        background-color: rgba(0, 0, 0, .7);
+        display: flex;
+        align-items: center;
+        overflow: hidden;
+        justify-content: center;
+        height: 100vh;
+        width: 100%;
+        color: #ffffff;
+    }
+    form#login{
+        display: flex;
+        flex-flow: column;
+    }
+    #login.des{display: none;}
+    #registro{display: none;}
+    #registro.ac{display: block;}
+    button:hover{
+        color: #f8961e;
+    }
+    .btn{
+        color: #ffffff;
+    }
+</style>
+<body>
+    <main>
+        <div id="login">
+            <form class="caja-usuario" action="" method="post">
+                <h2>Login</h2>
+                <div class="Ini-contenedor">
+                    <i class="fas fa-user"></i>
+                    <input type="email" name="" placeholder="Email">
+                </div>
+                <div class="Ini-contenedor">
+                    <i class="fas fa-lock"></i>
+                    <input type="password" name="" placeholder="Contraseña">
+                </div>
+                <button class="btn" type="submit">Iniciar secion</button>
+            </form>
+            <button type="submit" id="btn_login" class="btn">¿No tienes una cuenta?</button>
+        </div>
+        <div id="registro">
+            <form class="caja-usuario" action="" method="post">
+                <h2>Registro</h2>
+                <div class="Ini-contenedor">
+                    <i class="fas fa-user"></i>
+                    <input type="text" name="name" placeholder="Nombre - Ususario">
+                </div>
+                <div class="Ini-contenedor">
+                    <i class="fas fa-envelope"></i>
+                    <input type="email" name="email" placeholder="Email">
+                </div>
+                <div class="Ini-contenedor">
+                    <i class="fas fa-map-marked-alt"></i>
+                    <input type="text" name="ubicacion" placeholder="Ubicacion">
+                </div>
+                <div class="Ini-contenedor">
+                    <i class="fas fa-phone-alt"></i>
+                    <input type="tel" name="ubicacion" placeholder="Telefono">
+                </div>
+                <div class="Ini-contenedor">
+                    <i class="fas fa-lock"></i>
+                    <input type="password" name="" placeholder="Contraseña">
+                </div>
+                <div class="Ini-contenedor">
+                    <i class="fas fa-eye"></i>
+                    <textarea placeholder="Referencias" name="" id="" cols="30" rows="10"></textarea>
+                </div>
+                <button class="btn" type="submit">Registrarse</button>
+            </form>
+            <button id="btn_registro" class="btn">¿Ya tienes tu cuenta?</button>
+        </div>
+    </main>
+</body>
+</html>
